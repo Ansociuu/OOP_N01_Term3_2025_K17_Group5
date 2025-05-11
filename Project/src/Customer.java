@@ -1,7 +1,7 @@
 public class Customer extends User         //tính kế thừa 
 {
     public void signUp(String userId, String name, String gender, String birthDate, String phoneNumber,        //tính đa hình
-                String email, String address, String password, String userType) 
+                String email, String address, String password) 
     {
         this.userId = userId;
         this.name = name;

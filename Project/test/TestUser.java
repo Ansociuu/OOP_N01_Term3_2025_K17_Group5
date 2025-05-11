@@ -4,10 +4,10 @@ public class TestUser
     {
         Customer customer_1 = new Customer();
         customer_1.signUp("KH001", "Nguyễn Văn An", "Nam", "2005-12-16", 
-                  "0901239303", "a@gmail.com", "Hà Nội", "123456", "");
+                  "0901239303", "a@gmail.com", "Hà Nội", "123456");
         Seller seller_1 = new Seller();
         seller_1.signUp("NC001", "Trịnh Thị Lan Nhi", "Nữ", "2005-01-01", 
-                "0912345678", "b@gmail.com", "Hồ Chí Minh", "abcdef", "");
+                "0912345678", "b@gmail.com", "Hồ Chí Minh", "abcdef");
         
         System.out.println("== Thông tin Khách hàng ==");
         customer_1.showUser();
