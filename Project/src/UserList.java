@@ -1,54 +1,34 @@
+
 import java.util.ArrayList;
 
 public class UserList {
+    private ArrayList<User> users;
 
-    ArrayList<User> st = new ArrayList<User>();
-
-    public ArrayList<User> addUser(User stu) {
-
-        st.add(stu);
-        return st;
-
+    public UserList() {
+        this.users = new ArrayList<>();
     }
 
-    public ArrayList<User> getEditUser(String name, String userId) {
+    public void addUser(User user) {
+        users.add(user);
+    }
 
-        for (int i = 0; i < st.size(); i++) {
-
-            if (st.get(i).getUserId() == userId) {
-
-                System.out.print("true");
-
-                st.get(i).setName(name);
+    public User getUserById(String id) {
+        try {
+            for (User user : users) {
+                if (user.getId().equals(id)) {
+                    return user;
+                }
             }
-
+        } catch (Exception e) {
+            System.out.println("❌ Error while searching for user: " + e.getMessage());
         }
-
-        return st;
+        return null;
     }
 
-    public ArrayList<User> getDeleteUser(String userId) {
-
-        for (int i = 0; i < st.size(); i++) {
-
-            if (st.get(i).getUserId() == userId) {
-
-                st.remove(i);
-
-            }
-
+    public void displayAllUsers() {
+        for (User user : users) {
+            user.displayInfo();
+            System.out.println("------------------");
         }
-
-        return st;
-    }
-
-    public void printUserList() {
-        int len = st.size();
-
-        for (int i = 0; i < len; i++) {
-            System.out.println("User ID: " + st.get(i).getUserId() + " Fullname: " + st.get(i).getName());
-
-        }
-
     }
 }

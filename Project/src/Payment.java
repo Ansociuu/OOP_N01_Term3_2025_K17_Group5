@@ -1,46 +1,28 @@
 
 
-import java.time.LocalDate;
-
 public class Payment {
-    private int paymentId;
-    private int orderId;
-    private double amount;
     private String method;
-    private String status;
-    private LocalDate paymentDate;
+    private boolean isPaid;
 
-    public Payment(int paymentId, int orderId, double amount, String method, String status, LocalDate paymentDate) {
-        this.paymentId = paymentId;
-        this.orderId = orderId;
-        this.amount = amount;
+    public Payment(String method, boolean isPaid) {
         this.method = method;
-        this.status = status;
-        this.paymentDate = paymentDate;
+        this.isPaid = isPaid;
     }
 
-    public void processPayment() {
-        this.status = "Đã thanh toán";
-        this.paymentDate = LocalDate.now();
-        System.out.println("Thanh toán thành công.");
+    public String getMethod() {
+        return method;
     }
 
-    public void displayPaymentInfo() {
-        System.out.println("Mã thanh toán: " + paymentId);
-        System.out.println("Mã đơn hàng: " + orderId);
-        System.out.println("Số tiền: " + amount);
-        System.out.println("Phương thức: " + method);
-        System.out.println("Trạng thái: " + status);
-        System.out.println("Ngày thanh toán: " + paymentDate);
+    public boolean isPaid() {
+        return isPaid;
     }
 
-    public void updateMethod(String newMethod) {
-        this.method = newMethod;
-        System.out.println("Cập nhật phương thức thanh toán thành công.");
+    public void setPaid(boolean paid) {
+        isPaid = paid;
     }
 
-    public void updateStatus(String newStatus) {
-        this.status = newStatus;
-        System.out.println("Cập nhật trạng thái thanh toán thành công.");
+    public void displayPayment() {
+        System.out.println("Payment Method: " + method);
+        System.out.println("Payment Status: " + (isPaid ? "Paid" : "Unpaid"));
     }
 }

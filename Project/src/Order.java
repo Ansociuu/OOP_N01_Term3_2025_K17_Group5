@@ -1,71 +1,60 @@
-import java.time.LocalDate;
-import java.util.List;
+
+
+import java.util.ArrayList;
 
 public class Order {
     private String orderId;
-    private String userId;
-    private List<Integer> productIds;
-    private double totalAmount;
-    private LocalDate orderDate;
-    private String status;
+    private Customer customer;
+    private ArrayList<Product> productList;
+    private Payment payment;
+    private Time orderTime;
 
-    // Constructor
-    public Order(String orderId, String userId, List<Integer> productIds) {
+    public Order(String orderId, Customer customer, ArrayList<Product> productList, Payment payment, Time orderTime) {
         this.orderId = orderId;
-        this.userId = userId;
-        this.productIds = productIds;
-        this.orderDate = LocalDate.now();
-        this.status = "Chờ xác nhận";
-        this.totalAmount = 0;
+        this.customer = customer;
+        this.productList = productList;
+        this.payment = payment;
+        this.orderTime = orderTime;
     }
 
-    // Set tổng tiền
-    public void setTotalAmount(double amount) {
-        this.totalAmount = amount;
-    }
-
-    // Cập nhật trạng thái
-    public void updateStatus(String newStatus) {
-        this.status = newStatus;
-    }
-
-    // Hiển thị thông tin đơn hàng
-    public void displayOrderInfo() {
-        System.out.println("Mã đơn hàng: " + orderId);
-        System.out.println("Mã người dùng: " + userId);
-        System.out.println("Danh sách mã sản phẩm: " + productIds);
-        System.out.println("Tổng tiền: " + totalAmount + " VND");
-        System.out.println("Ngày đặt hàng: " + orderDate);
-        System.out.println("Trạng thái: " + status);
-    }
-
-    // Getter cho orderId
     public String getOrderId() {
         return orderId;
     }
 
-    // Getter cho userId
-    public String getUserId() {
-        return userId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    // Getter cho status
-    public String getStatus() {
-        return status;
+    public ArrayList<Product> getProductList() {
+        return productList;
     }
 
-    // Getter cho productIds
-    public List<Integer> getProductIds() {
-        return productIds;
+    public Payment getPayment() {
+        return payment;
     }
 
-    // Getter cho tổng tiền
+    public Time getOrderTime() {
+        return orderTime;
+    }
+
     public double getTotalAmount() {
-        return totalAmount;
+        double total = 0;
+        for (Product p : productList) {
+            total += p.getPrice();
+        }
+        return total;
     }
 
-    // Getter cho ngày đặt hàng
-    public LocalDate getOrderDate() {
-        return orderDate;
+    public void displayOrder() {
+        System.out.println("---- Order Info ----");
+        System.out.println("Order ID: " + orderId);
+        customer.displayInfo();
+        System.out.println("Ordered Products:");
+        for (Product p : productList) {
+            System.out.println(" - " + p.getName() + " ($" + p.getPrice() + ")");
+        }
+        System.out.println("Total Amount: $" + getTotalAmount());
+        payment.displayPayment();
+        orderTime.displayTime();
     }
 }

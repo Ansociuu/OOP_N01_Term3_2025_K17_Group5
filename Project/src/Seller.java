@@ -1,13 +1,23 @@
-public class Seller extends User 
-{
-    public Seller(String userId, String name, String gender, String birthDate, String phoneNumber, 
-            String email, String address, String password) 
-    {
-        super(userId, name, gender, birthDate, phoneNumber, email, address, password, "Nhà cung cấp");
+
+
+public class Seller extends User {
+    private String storeName;
+
+    public Seller(String id, String name, String email, String password, String storeName) {
+        super(id, name, email, password);
+        this.storeName = storeName;
     }
 
-    public void sell(String productName)        //bán sản phẩm
-    {
-        System.out.println(getName() + " đã đăng bán sản phẩm: " + productName);
+    public String getStoreName() {
+        return storeName;
+    }
+
+    @Override
+    public void displayInfo() {
+        System.out.println("---- Seller Info ----");
+        System.out.println("ID: " + id);
+        System.out.println("Name: " + name);
+        System.out.println("Email: " + email);
+        System.out.println("Store: " + storeName);
     }
 }
